@@ -1,2 +1,2 @@
-# WordRelay
+# WordChain
 * python
