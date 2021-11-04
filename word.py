@@ -1,3 +1,6 @@
+'''
+데이터 전처리
+'''
 import pandas as pd
 from glob import glob
 import re

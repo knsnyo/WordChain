@@ -1,7 +1,10 @@
+'''
+메인 화면
+'''
 from tkinter import *
 import tkinter.ttk as ttk
 import time
-
+import checkWord as cw
 
 ''' set default setting '''
 # 상수처럼
@@ -56,15 +59,24 @@ progressbar_input_time.pack()
 
 ''' frame_content '''
 # 제시어
-str_head = ttk.Label(frame_content, text = "가", font = ('궁서체', 20), relief = "solid")
+str_head = ttk.Label(frame_content, text = "가", font = ('맑은 고딕', 20), relief = "solid")
 str_head.pack(side = LEFT)
+#print(str_head.cget("text"))
 
 
 ''' frane_output '''
 #입력창 만들기
 txt = Entry(frame_output)
 def callback(event):
-    str_head.config(text=txt.get())
+    a = cw.check(str_head.cget("text"), txt.get())
+    if 1 == a:
+        str_head.config(text=txt.get())
+    elif -1 == a:
+        print("길이가 짧음")
+    elif -2 == a:
+        print("사전에 없는 단어")
+    elif -3 == a:
+        print("끝말잇기 실패")
     # 입력칸 초기화
     txt.delete(0,99)
 
