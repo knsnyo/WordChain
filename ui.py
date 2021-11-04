@@ -20,7 +20,7 @@ root.geometry(str_geometry)
 root.resizable(False, False)
 
 
-''' set menu bar'''
+''' set menu bar '''
 # 메뉴바 만들기
 menu = Menu(root)
 # 새 게임
@@ -46,7 +46,7 @@ frame_output.pack(side = BOTTOM)
 
 
 ''' frame_progressbar '''
-# 시간(전체 시간=120s/ 입력 시간=10s)
+# 시간(전체 시간: 120s/ 입력 시간: 0~10s)
 p_var_all = DoubleVar()
 p_var_input = DoubleVar()
 

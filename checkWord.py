@@ -18,3 +18,8 @@ def check(head, txt):
         return -3
     else:
         return 1
+
+'''
+했던 단어라면
+return -4
+'''
