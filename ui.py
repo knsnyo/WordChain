@@ -67,16 +67,50 @@ str_head.pack(side = LEFT)
 ''' frane_output '''
 #입력창 만들기
 txt = Entry(frame_output)
+# 맞을때 출력하는 함수
+
+#sentence = 출력할 문자, timesl = 글자가 출력되는 시간간격(단위:초)
+def isRightWord (sentence, timesl=1):
+    for i in range(len(sentence)):
+        str_head.config(text = sentence[0:i+i])
+        root.update()
+        time.sleep(timesl)
+        #time_after = int(timesl * 1000)
+        #root.after(time_after, str_head.config(text = sentence[0:i+i]))
+        
+    
+    str_head.config(text = sentence[len(sentence)-1])
+    
+def isWrongWord(n, timesl = 0.5):
+    temp = str_head.cget("text")
+    if n == -1:
+        str_head.config(text = "길이가 짧아요");
+        time.sleep(1)
+        root.update()
+        str_head.config(text = temp)
+    elif n == -2:
+        str_head.config(text = "사전에 없는 단어예요");
+        time.sleep(1)
+        root.update()
+        str_head.config(text = temp)
+    elif n == -3:
+        str_head.config(text = "끝말이 이어지지 않아요");
+        time.sleep(1)
+        root.update()
+        str_head.config(text = temp)
+        
+
+# enter 입력시 끝말잇기에 적절한 단어인지 확인
 def callback(event):
     a = cw.check(str_head.cget("text"), txt.get())
     if 1 == a:
-        str_head.config(text=txt.get())
-    elif -1 == a:
-        print("길이가 짧음")
-    elif -2 == a:
-        print("사전에 없는 단어")
-    elif -3 == a:
-        print("끝말잇기 실패")
+        str_head.config(text = txt.get())
+        time_sleep = float(2/len(txt.get()))
+        print(time_sleep)
+        isRightWord(txt.get(), time_sleep)
+    else:
+        print(a)
+        isWrongWord(a)
     # 입력칸 초기화
     txt.delete(0,99)
 
@@ -85,7 +119,6 @@ txt.bind('<Return>', callback)
 txt.pack(side = BOTTOM)
 
 root.mainloop()
-
 
 '''
 def check_input_time():
