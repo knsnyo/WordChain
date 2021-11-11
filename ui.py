@@ -72,12 +72,9 @@ txt = Entry(frame_output)
 #sentence = 출력할 문자, timesl = 글자가 출력되는 시간간격(단위:초)
 def isRightWord (sentence, timesl=1):
     for i in range(len(sentence)):
-        str_head.config(text = sentence[0:i+i])
+        str_head.config(text = sentence[0:i+1])
         root.update()
         time.sleep(timesl)
-        #time_after = int(timesl * 1000)
-        #root.after(time_after, str_head.config(text = sentence[0:i+i]))
-        
     
     str_head.config(text = sentence[len(sentence)-1])
     
@@ -85,18 +82,18 @@ def isWrongWord(n, timesl = 0.5):
     temp = str_head.cget("text")
     if n == -1:
         str_head.config(text = "길이가 짧아요");
-        time.sleep(1)
         root.update()
+        time.sleep(1)
         str_head.config(text = temp)
     elif n == -2:
         str_head.config(text = "사전에 없는 단어예요");
-        time.sleep(1)
         root.update()
+        time.sleep(1)
         str_head.config(text = temp)
     elif n == -3:
         str_head.config(text = "끝말이 이어지지 않아요");
-        time.sleep(1)
         root.update()
+        time.sleep(1)
         str_head.config(text = temp)
         
 
@@ -105,7 +102,7 @@ def callback(event):
     a = cw.check(str_head.cget("text"), txt.get())
     if 1 == a:
         str_head.config(text = txt.get())
-        time_sleep = float(2/len(txt.get()))
+        time_sleep = float(1/len(txt.get()))
         print(time_sleep)
         isRightWord(txt.get(), time_sleep)
     else:
