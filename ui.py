@@ -5,6 +5,7 @@ from tkinter import *
 import tkinter.ttk as ttk
 import time
 import checkWord as cw
+import pygame
 
 ''' set default setting '''
 # 상수처럼
@@ -18,6 +19,9 @@ str_geometry=str(width)+'x'+str(height)
 root.geometry(str_geometry)
 # 창 크기 조절 x
 root.resizable(False, False)
+pygame.init()
+sound = pygame.mixer.Sound("du.wav")
+''''''
 
 
 ''' set menu bar '''
@@ -71,8 +75,12 @@ txt = Entry(frame_output)
 
 #sentence = 출력할 문자, timesl = 글자가 출력되는 시간간격(단위:초)
 def isRightWord (sentence, timesl=1):
+    str_head.config(text = "")
+    root.update()
+    time.sleep(0.1)
     for i in range(len(sentence)):
         str_head.config(text = sentence[0:i+1])
+        sound.play()
         root.update()
         time.sleep(timesl)
     
@@ -117,14 +125,17 @@ txt.pack(side = BOTTOM)
 
 root.mainloop()
 
+
+
 '''
-def check_input_time():
+def checkInputTime():
     for i in range(1,11):
         time.sleep(1)
         p_var_input.set(i)
         progressbar_input_time.update()
 
-def check_all_time():
+
+def checkAllTime():
     for i in range(1,101):
         time.sleep(1)
         p_var_all.set(i)
