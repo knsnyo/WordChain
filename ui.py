@@ -1,6 +1,4 @@
-'''
-메인 화면
-'''
+''' 메인 화면 '''
 from tkinter import *
 import tkinter.ttk as ttk
 import time
@@ -94,7 +92,7 @@ def isWrongWord(n, timesl = 0.5):
         time.sleep(1)
         str_head.config(text = temp)
     elif n == -2:
-        str_head.config(text = "사전에 없는 단어예요");
+        str_head.config(text = "사전에 없는 단어예요.");
         root.update()
         time.sleep(1)
         str_head.config(text = temp)
